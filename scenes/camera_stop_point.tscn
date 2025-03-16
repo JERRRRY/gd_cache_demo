@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://be0pi4g7336ry"]
+
+[ext_resource type="Script" uid="uid://d2tcyvok0o7mi" path="res://scripts/camera_stop_point.gd" id="1_jaitl"]
+
+[node name="camera_stop_point" type="Area2D"]
+script = ExtResource("1_jaitl")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

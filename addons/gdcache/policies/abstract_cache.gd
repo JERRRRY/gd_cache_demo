@@ -8,7 +8,7 @@ signal set_key(key: Variant, value)
 signal evict_key(key: Variant)
 signal fetch_key(key: Variant)
 
-@export_range(1, 65536, 1) var CAPACITY: int = 3
+@export_range(1, 65536, 1) var CAPACITY: int = 5
 var _cache: Dictionary = {}
 var _cache_file_path = "res://cache/cache.json"
 

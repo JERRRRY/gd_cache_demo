@@ -5,7 +5,6 @@ extends Area2D
 func _on_body_entered(body: Node2D) -> void:
 	Engine.time_scale = 0.5
 	body.get_node("CollisionShape2D").queue_free()
-	print("kill+1")
 	var cache_kill = global_cache.Get("kill",  {"default": 0}) + 1
 	global_cache.Set("kill", cache_kill)
 	print("cache save:{kill,"+str(cache_kill)+"}")

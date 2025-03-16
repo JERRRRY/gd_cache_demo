@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdisj3x3vseri"]
+
+[ext_resource type="Script" uid="uid://bwn3r3y6tymdf" path="res://scripts/camera_move_point.gd" id="1_tb4l5"]
+
+[node name="camera_move_point" type="Area2D"]
+script = ExtResource("1_tb4l5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

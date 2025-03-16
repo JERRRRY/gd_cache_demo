@@ -3,8 +3,11 @@ extends CharacterBody2D
 
 const SPEED = 180.0
 const JUMP_VELOCITY = -320.0
+var attacking = false
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
+func _ready() -> void:
+	animated_sprite_2d.flip_h = true	
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -24,14 +27,21 @@ func _physics_process(delta: float) -> void:
 	elif direction>0:
 		animated_sprite_2d.flip_h = false
 	
-	if is_on_floor():
+	if not attacking:
 		if direction == 0:
 			animated_sprite_2d.play("idle")
 		else:
-			animated_sprite_2d.play("run")
-	else:
-		animated_sprite_2d.play("jump")
+			animated_sprite_2d.play("walk")
 	
+		
+	if Input.is_action_just_pressed("attack1") and not attacking:
+		attack("attack1")
+	
+	if Input.is_action_just_pressed("attack2") and not attacking:
+		attack("attack2")
+	
+	if Input.is_action_just_pressed("attack3") and not attacking:
+		attack("attack3")	
 	
 	
 	if direction:
@@ -40,3 +50,11 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	
+func attack(atk: String):
+	attacking = true
+	animated_sprite_2d.play(atk)
+	animated_sprite_2d.animation_looped.connect(_on_animation_finished)
+
+func _on_animation_finished():
+		attacking = false	
